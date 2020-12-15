@@ -33,8 +33,10 @@
     <script src="../src/components/VoltageSource.js"></script>
     <script src="../src/components/Resistor.js"></script>
     <script src="../src/components/CurrentSource.js"></script>
-    <script src="../src/components/CCVS.js"></script>
-    <script src="../src/components/CCCS.js"></script>
+    <script src="../src/components/CCVS_Gen.js"></script>
+    <script src="../src/components/CCVS_Vs.js"></script>
+    <script src="../src/components/CCCS_Vs.js"></script>
+    <script src="../src/components/CCCS_Gen.js"></script>
     <script src="../src/components/VCCS.js"></script>
     <script src="../src/components/VCVS.js"></script>
 
@@ -130,18 +132,32 @@
         VCVS
       </div>
       <div
-        data-shape="CCCS"
+        data-shape="CCCS_Gen"
         draggable="true"
         class="palette_node_element draw2d_droppable"
       >
-        CCCS
+        CCCS_Gen
       </div>
       <div
-        data-shape="CCVS"
+        data-shape="CCCS_Vs"
         draggable="true"
         class="palette_node_element draw2d_droppable"
       >
-        CCVS
+        CCCS_Vs
+      </div>
+      <div
+        data-shape="CCVS_Gen"
+        draggable="true"
+        class="palette_node_element draw2d_droppable"
+      >
+        CCVS_Gen
+      </div>
+      <div
+        data-shape="CCVS_Vs"
+        draggable="true"
+        class="palette_node_element draw2d_droppable"
+      >
+        CCVS_Vs
       </div>
     </div>
     <div class="mask" role="dialog"></div>

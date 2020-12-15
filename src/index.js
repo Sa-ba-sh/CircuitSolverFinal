@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }),
     ])
   );
-  $(".show").on("click", function () {
-    $(".mask").addClass("active");
-  });
+  // $(".show").on("click", function () {
+  //   $(".mask").addClass("active");
+  // });
 
   // Function for close the Modal(Popupview-for showing the output )
 
@@ -906,12 +906,219 @@ function getJSON() {
       });
     });
   }
-  update_conn_label();
-  updatePreview(app.view);
-  displayJSON(app.view);
 
   var nodes = nodes_list.length - 1;
 
+  if (element_id_list.length == 0 || nodes_list.length == 0) {
+    return alert("Please give a valid input and try again");
+  } else {
+    for (var i = 0; i < resistor_list.length; i++) {
+      if (parseFloat(resistor_list[i].label) != resistor_list[i].label) {
+        return alert(
+          "You haven't entered correct information for one of the resistor"
+        );
+      }
+      if (resistor_list[i].node_k > nodes) {
+        return alert(
+          "The " +
+            resistor_list[i].label +
+            " ohms resistor's node_high is not valid"
+        );
+      }
+      if (resistor_list[i].node_l > nodes) {
+        return alert(
+          "The " +
+            resistor_list[i].label +
+            " ohms resistor's node_low is not valid"
+        );
+      }
+    }
+
+    for (var i = 0; i < curr_src_list.length; i++) {
+      if (parseFloat(curr_src_list[i].label) != curr_src_list[i].label) {
+        return alert(
+          "You haven't entered correct information for one of the current source"
+        );
+      }
+      if (curr_src_list[i].node_k > nodes) {
+        return alert(
+          "The " +
+            curr_src_list[i].label +
+            " ampere resistor's node_high is not valid"
+        );
+      }
+      if (curr_src_list[i].node_l > nodes) {
+        return alert(
+          "The " +
+            curr_src_list[i].label +
+            " ampere resistor's node_low is not valid"
+        );
+      }
+    }
+    for (var i = 0; i < volt_src_list.length; i++) {
+      if (parseFloat(volt_src_list[i].label) != volt_src_list[i].label) {
+        return alert(
+          "You haven't entered correct information for one of the voltage source"
+        );
+      }
+      if (volt_src_list[i].node_k > nodes) {
+        return alert(
+          "The " +
+            volt_src_list[i].label +
+            " volts resistor's node_high is not valid"
+        );
+      }
+      if (volt_src_list[i].node_l > nodes) {
+        return alert(
+          "The " +
+            volt_src_list[i].label +
+            " volts resistor's node_low is not valid"
+        );
+      }
+    }
+    for (var i = 0; i < vccs_list.length; i++) {
+      if (parseFloat(vccs_list[i].label) != vccs_list[i].label) {
+        return alert(
+          "You haven't entered correct information for one of the Voltage controlled current source"
+        );
+      }
+      if (vccs_list[i].node_k > nodes) {
+        return alert("The node_high is not valid for one of the VCCS");
+      }
+      if (vccs_list[i].node_l > nodes) {
+        return alert("The node_low is not valid for one of the VCCS");
+      }
+      if (vccs_list[i].node_m > nodes) {
+        return alert(
+          "The controlled voltage node_high is not valid for one of the VCCS"
+        );
+      }
+      if (vccs_list[i].node_n > nodes) {
+        return alert(
+          "The controlled voltage node_low is not valid for one of the VCCS"
+        );
+      }
+    }
+    for (var i = 0; i < vcvs_list.length; i++) {
+      if (parseFloat(vcvs_list[i].label) != vcvs_list[i].label) {
+        return alert(
+          "You haven't entered correct information for one of the Voltage controlled voltage source"
+        );
+      }
+      if (vcvs_list[i].node_k > nodes) {
+        return alert("The node_high is not valid for one of the VCVS");
+      }
+      if (vcvs_list[i].node_l > nodes) {
+        return alert("The node_low is not valid for one of the VCVS");
+      }
+      if (vcvs_list[i].node_m > nodes) {
+        return alert(
+          "The controlled voltage node_high is not valid for one of the VCVS"
+        );
+      }
+      if (vcvs_list[i].node_n > nodes) {
+        return alert(
+          "The controlled voltage node_low is not valid for one of the VCVS"
+        );
+      }
+    }
+
+    for (var i = 0; i < cccs_gen_list.length; i++) {
+      if (parseFloat(cccs_gen_list[i].label) != cccs_gen_list[i].label) {
+        return alert(
+          "You haven't entered correct information for one of the current controlled current source"
+        );
+      }
+      if (cccs_gen_list[i].node_k > nodes) {
+        return alert("The node_high is not valid for one of the CCCS");
+      }
+      if (cccs_gen_list[i].node_l > nodes) {
+        return alert("The node_low is not valid for one of the CCCS");
+      }
+      if (cccs_gen_list[i].node_m > nodes) {
+        return alert(
+          "The controlled voltage node_high is not valid for one of the CCCS"
+        );
+      }
+      if (cccs_gen_list[i].node_n > nodes) {
+        return alert(
+          "The controlled voltage node_low is not valid for one of the CCCS"
+        );
+      }
+    }
+    for (var i = 0; i < cccs_vs_list.length; i++) {
+      if (parseFloat(cccs_vs_list[i].label) != cccs_vs_list[i].label) {
+        return alert(
+          "You haven't entered correct information for one of the current controlled current source"
+        );
+      }
+      if (cccs_vs_list[i].node_k > nodes) {
+        return alert("The node_high is not valid for one of the CCCS");
+      }
+      if (cccs_vs_list[i].node_l > nodes) {
+        return alert("The node_low is not valid for one of the CCCS");
+      }
+      if (cccs_vs_list[i].node_m > nodes) {
+        return alert(
+          "The controlled voltage node_high is not valid for one of the CCCS"
+        );
+      }
+      if (cccs_vs_list[i].node_n > nodes) {
+        return alert(
+          "The controlled voltage node_low is not valid for one of the CCCS"
+        );
+      }
+    }
+    for (var i = 0; i < ccvs_gen_list.length; i++) {
+      if (parseFloat(ccvs_gen_list[i].label) != ccvs_gen_list[i].label) {
+        return alert(
+          "You haven't entered correct information for one of the current controlled voltage source"
+        );
+      }
+      if (ccvs_gen_list[i].node_k > nodes) {
+        return alert("The node_high is not valid for one of the CCVS");
+      }
+      if (ccvs_gen_list[i].node_l > nodes) {
+        return alert("The node_low is not valid for one of the CCVS");
+      }
+      if (ccvs_gen_list[i].node_m > nodes) {
+        return alert(
+          "The controlled voltage node_high is not valid for one of the CCVS"
+        );
+      }
+      if (ccvs_gen_list[i].node_n > nodes) {
+        return alert(
+          "The controlled voltage node_low is not valid for one of the CCVS"
+        );
+      }
+    }
+    for (var i = 0; i < ccvs_vs_list.length; i++) {
+      if (parseFloat(ccvs_vs_list[i].label) != ccvs_vs_list[i].label) {
+        return alert(
+          "You haven't entered correct information for one of the current controlled voltage source"
+        );
+      }
+      if (ccvs_vs_list[i].node_k > nodes) {
+        return alert("The node_high is not valid for one of the CCVS");
+      }
+      if (ccvs_vs_list[i].node_l > nodes) {
+        return alert("The node_low is not valid for one of the CCVS");
+      }
+      if (ccvs_vs_list[i].node_m > nodes) {
+        return alert(
+          "The controlled voltage node_high is not valid for one of the CCVS"
+        );
+      }
+      if (ccvs_vs_list[i].node_n > nodes) {
+        return alert(
+          "The controlled voltage node_low is not valid for one of the CCVS"
+        );
+      }
+    }
+  }
+  update_conn_label();
+  updatePreview(app.view);
+  displayJSON(app.view);
   var size = parseInt(nodes + volt_src_list.length + vcvs_list.length);
   var cond_matrix = Array(size)
     .fill()
@@ -1608,7 +1815,6 @@ function getJSON() {
       output.appendChild(h3);
     }
   }
-
   // var button = document.createElement("button");
   // button.setAttribute("class", "btn btn-primary btn-lg my-3");
   // button.setAttribute("style", "width: 220px");
@@ -1628,4 +1834,5 @@ function getJSON() {
   button2.setAttribute("download", "diagram.png");
   button2.innerHTML = "Save image as PNG";
   output.appendChild(button2);
+  $(".mask").addClass("active");
 }

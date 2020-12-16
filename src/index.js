@@ -909,7 +909,11 @@ function getJSON() {
 
   var nodes = nodes_list.length - 1;
 
-  if (element_id_list.length == 0 || nodes_list.length == 0 || nodes_list.length == 1) {
+  if (
+    element_id_list.length == 0 ||
+    nodes_list.length == 0 ||
+    nodes_list.length == 1
+  ) {
     return alert("Please give a valid input and try again");
   } else {
     for (var i = 0; i < resistor_list.length; i++) {

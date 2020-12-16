@@ -919,6 +919,7 @@ function getJSON() {
 
   if (
     element_id_list.length == 0 ||
+    element_id_list.length == 1 ||
     nodes_list.length == 0 ||
     nodes_list.length == 1
   ) {

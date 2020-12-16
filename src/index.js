@@ -916,7 +916,7 @@ function getJSON() {
   }
 
   var nodes = nodes_list.length - 1;
-
+  console.log(element_id_list);
   if (
     element_id_list.length == 0 ||
     element_id_list.length == 1 ||

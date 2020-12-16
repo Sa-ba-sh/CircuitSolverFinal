@@ -65,9 +65,13 @@ example.Toolbar = Class.extend({
       )
       .button("option", "disabled", true);
     this.submitButton = $(
-      "<button type='button' class='show btn-primary btn-lg px-5'  aria-haspopup='true' onClick='getJSON()' ><img src='.././css/icons/play.png' alt='play' /> Simulate</button>"
+      "<button type='button' class='show btn-primary btn-lg px-3'  aria-haspopup='true' onClick='getJSON()' ><img src='.././css/icons/play.png' alt='play' /> Simulate</button>"
     );
     this.html.append(this.submitButton);
+    this.docsButton = $(
+      "<button type='button' style='margin-left:35px' class='show-docs btn-primary btn-lg px-3'  aria-haspopup='true' >Instructions</button>"
+    );
+    this.html.append(this.docsButton);
   },
 
   /**

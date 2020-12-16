@@ -28,6 +28,16 @@ h4 {
   max-width: 40rem;
   padding-top: 50px;
 }
+.profile {
+  width: 60%;
+  height: 60%;
+  margin: 5%;
+}
+.feedback {
+  max-width: 30rem;
+  width: 80%;
+  margin: 0 auto;
+}
 .about {
   color: white;
   padding-top: 2%;

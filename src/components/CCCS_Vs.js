@@ -7,11 +7,11 @@ CCCS_Vs = draw2d.SVGFigure.extend({
     this._super();
     var inputLocator = new draw2d.layout.locator.InputPortLocator();
     var outputLocator = new draw2d.layout.locator.OutputPortLocator();
-    
+
     this.createPort("hybrid", inputLocator);
     this.createPort("hybrid", outputLocator);
     this.label = new draw2d.shape.basic.Label({
-      text: "CCCS_Vs",
+      text: "ControlFactor",
       color: "#0d0d0d",
       fontColor: "#0d0d0d",
     });

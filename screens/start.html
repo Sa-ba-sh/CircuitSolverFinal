@@ -69,7 +69,7 @@
               <a class="nav-link" href="../index.html"><h5>Home</h5></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="docs.html"><h5>Docs</h5></a>
+              <a class="nav-link show-docs"><h5>Docs</h5></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="start.html"><h5>Editor</h5></a>
@@ -91,7 +91,11 @@
         class="navbar sticky-top navbar-expand-lg navbar-dark"
       ></div>
 
-      <div id="canvas" class="" style="width: 3000px; height: 3000px"></div>
+      <div
+        id="canvas"
+        draggable="true"
+        style="width: 3000px; height: 3000px"
+      ></div>
     </div>
 
     <div id="navigation" class="">
@@ -205,6 +209,53 @@
         Simulate Another
       </button>
     </div>
+    <div class="mask-docs" role="dialog"></div>
+
+    <div class="modal-docs" id="svg" role="alert">
+      <button class="close-docs" role="button">
+        <img
+          src="https://img.icons8.com/ios-glyphs/30/000000/macos-close.png"
+        />
+      </button>
+      <h1>Instructions</h1>
+      <ol>
+        <li>Drag and drop the elements from the left to the canvas</li>
+        <li>Double click the element to rotate 90 degrees</li>
+        <li>
+          Connection of ports:
+          <ul>
+            <li>
+              Click the ports from each element one after the other, it
+              automatically connects (OR)
+            </li>
+            <li>
+              You can drag from one port and drop to the destination port(doesnt
+              work on mobile browser)
+            </li>
+          </ul>
+        </li>
+        <li>Double click the element Label to edit the value</li>
+        <li>
+          To name the node is optional unless there are controlling sources
+          since we need to identify where controlling factor flows. After
+          simulation, node numbering is automatically done to all the nodes.
+        </li>
+        <li>
+          For controlling sources for example <br /><img
+            style="width: 200px"
+            src="../css/controlledcurrentsrc.png"
+            alt=""
+          />
+          <br />
+          The top input box "ControlFactor" is the control factor of the element
+          <br />
+          The input box in the left "High" represents the node high of the
+          controlling element whereas the input box in the right "Low"
+          represents the node low of the controlling element.
+        </li>
+      </ol>
+    </div>
+
     <pre
       id="json"
       style="

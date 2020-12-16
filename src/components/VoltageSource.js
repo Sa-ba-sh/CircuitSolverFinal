@@ -11,7 +11,7 @@ VoltageSource = draw2d.SVGFigure.extend({
     this.createPort("hybrid", inputLocator);
     this.createPort("hybrid", outputLocator);
     this.label = new draw2d.shape.basic.Label({
-      text: "Voltage Src",
+      text: "Value",
       color: "#0d0d0d",
       fontColor: "#0d0d0d",
     });
@@ -79,7 +79,7 @@ VoltageSource = draw2d.SVGFigure.extend({
       }, this)
     );
   },
-  
+
   onDoubleClick: function () {
     this.setRotationAngle((this.getRotationAngle() + 90) % 360);
   },

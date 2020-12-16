@@ -7,11 +7,11 @@ VCVS = draw2d.SVGFigure.extend({
     this._super();
     var inputLocator = new draw2d.layout.locator.InputPortLocator();
     var outputLocator = new draw2d.layout.locator.OutputPortLocator();
-    
+
     this.createPort("hybrid", inputLocator);
     this.createPort("hybrid", outputLocator);
     this.label = new draw2d.shape.basic.Label({
-      text: "VCVS",
+      text: "ControlFactor",
       color: "#0d0d0d",
       fontColor: "#0d0d0d",
     });
@@ -28,7 +28,6 @@ VCVS = draw2d.SVGFigure.extend({
     });
     this.label1.id = "highVCVS" + VCVS_high++;
 
-
     // add the new decoration to the connection with a position locator.
     //
     this.add(this.label1, new draw2d.layout.locator.LeftLocator(this));
@@ -41,13 +40,11 @@ VCVS = draw2d.SVGFigure.extend({
     });
     this.label2.id = "lowVCVS" + VCVS_low++;
 
-
     // add the new decoration to the connection with a position locator.
     //
     this.add(this.label2, new draw2d.layout.locator.RightLocator(this));
 
     this.label2.installEditor(new draw2d.ui.LabelInplaceEditor());
-
 
     // labels are added via JSON document.
   },

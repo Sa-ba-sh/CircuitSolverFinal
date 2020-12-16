@@ -17,20 +17,28 @@ document.addEventListener("DOMContentLoaded", function () {
       }),
     ])
   );
-  // $(".show").on("click", function () {
-  //   $(".mask").addClass("active");
+  // var msg = new draw2d.shape.note.PostIt({
+  //   text:
+  //     "Instructions:\n1. Drag and drop the elements from the left to the canvas.\n2. Double click the element to rotate\n3. Connection of ports:\n     i). Click the ports from each element one after the other, it automatically connects (OR)\n     ii). You can drag from one port to drop the destination port(doesnt work on mobile browser)\n4. Double click the element Label to edit the value\n5. To name the node is optional. It is required only when there are controlling sources to identify where controlling factor flows.",
   // });
+  // app.view.add(msg, 20, 20);
+  $(".show-docs").on("click", function () {
+    $(".mask-docs").addClass("active");
+  });
 
   // Function for close the Modal(Popupview-for showing the output )
 
-  function closeModal() {
-    $(".mask").removeClass("active");
+  function closeModal(e) {
+    $(e).removeClass("active");
   }
 
   // Call the closeModal function on the clicks/keyboard
 
   $(".close").on("click", function () {
-    closeModal();
+    closeModal(".mask");
+  });
+  $(".close-docs").on("click", function () {
+    closeModal(".mask-docs");
   });
   $(".again").on("click", function () {
     closeModal();

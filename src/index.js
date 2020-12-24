@@ -122,7 +122,7 @@ function updatePreview(canvas) {
   );
 }
 
-// document.getElementById("json").style.display = "none";
+document.getElementById("json").style.display = "none";
 
 function getJSON() {
   circuit = document.getElementById("json").innerHTML;
@@ -620,6 +620,11 @@ function getJSON() {
         raw_nodes_list.push(ele["ports"][1]["id"]);
       }
     } else if (ele["type"] == "VCVS") {
+      // high_initial declare i think before this function
+      // low_initial
+      // get high initaial, low initial connections id maybe
+      // update node
+      // id obtained above should be mapped correspondingly change values
       vcvs_list.push(
         new volt_cont_volt_src(
           ele["id"],
@@ -843,7 +848,21 @@ function getJSON() {
       return p1;
     }
   }
-
+  var to_change_list = [];
+  for (var i = 0; i < connection_list.length; i++) {
+    try {
+      to_change_list.push([
+        parseInt(connection_list[i].label_text),
+        connection_list[i].tar_node,
+      ]);
+    } catch (error) {
+      console.log(error);
+    }
+    // try:
+    //   to_change_list.append((int(conn.label_text),conn.tar_node))
+    // except ValueError:
+    //   pass
+  }
   resistor_list.forEach((ele) => {
     ele.node_k = return_node_num_from_port_id(ele.inp_port_id);
     ele.node_l = return_node_num_from_port_id(ele.out_port_id);
@@ -906,6 +925,23 @@ function getJSON() {
         connection_list[i].src_node
       );
     }
+    for (var i = 0; i < vcvs_list.length; i++) {
+      console.log("vcvs_list[i].cont_high_node: ", vcvs_list[i].cont_high_node);
+      console.log(
+        "ret_node_m_or_n(ele.cont_high_node): ",
+        ret_node_m_or_n(vcvs_list[i].cont_high_node)
+      );
+      console.log("vcvs_list[i].cont_low_node: ", vcvs_list[i].cont_low_node);
+      console.log(
+        "ret_node_m_or_n(vcvs_list[i].cont_low_node): ",
+        ret_node_m_or_n(vcvs_list[i].cont_low_node)
+      );
+      vcvs_list[i].cont_high_node = ret_node_m_or_n(
+        vcvs_list[i].cont_high_node
+      );
+
+      vcvs_list[i].cont_low_node = ret_node_m_or_n(vcvs_list[i].cont_low_node);
+    }
     app.view.lines.data.forEach((ele) => {
       connection_list.forEach((conn) => {
         if (conn.conn_id == ele["id"]) {
@@ -914,12 +950,90 @@ function getJSON() {
       });
     });
   }
+  update_conn_label();
+  updatePreview(app.view);
+  displayJSON(app.view);
+  console.log(app.view);
+
+  for (var i = 0; i < to_change_list.length; i++) {
+    for (var j = 0; j < vccs_list.length; j++) {
+      if (parseInt(vccs_list[j].node_m) == to_change_list[i][0]) {
+        vccs_list[j].node_m = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+      if (parseInt(vccs_list[j].node_n) == to_change_list[i][0]) {
+        vccs_list[j].node_n = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+    }
+    for (var j = 0; j < vcvs_list.length; j++) {
+      if (parseInt(vcvs_list[j].node_m) == to_change_list[i][0]) {
+        vcvs_list[j].node_m = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+      if (parseInt(vcvs_list[j].node_n) == to_change_list[i][0]) {
+        vcvs_list[j].node_n = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+    }
+    for (var j = 0; j < cccs_gen_list.length; j++) {
+      if (parseInt(cccs_gen_list[j].node_m) == to_change_list[i][0]) {
+        cccs_gen_list[j].node_m = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+      if (parseInt(cccs_gen_list[j].node_n) == to_change_list[i][0]) {
+        cccs_gen_list[j].node_n = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+    }
+    for (var j = 0; j < cccs_vs_list.length; j++) {
+      if (parseInt(cccs_vs_list[j].node_m) == to_change_list[i][0]) {
+        cccs_vs_list[j].node_m = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+      if (parseInt(cccs_vs_list[j].node_n) == to_change_list[i][0]) {
+        cccs_vs_list[j].node_n = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+    }
+    for (var j = 0; j < ccvs_gen_list.length; j++) {
+      if (parseInt(ccvs_gen_list[j].node_m) == to_change_list[i][0]) {
+        ccvs_gen_list[j].node_m = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+      if (parseInt(ccvs_gen_list[j].node_n) == to_change_list[i][0]) {
+        ccvs_gen_list[j].node_n = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+    }
+    for (var j = 0; j < ccvs_vs_list.length; j++) {
+      if (parseInt(ccvs_vs_list[j].node_m) == to_change_list[i][0]) {
+        ccvs_vs_list[j].node_m = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+      if (parseInt(ccvs_vs_list[j].node_n) == to_change_list[i][0]) {
+        ccvs_vs_list[j].node_n = return_node_num_from_port_id(
+          to_change_list[i][1]
+        );
+      }
+    }
+  }
 
   var nodes = nodes_list.length - 1;
-  console.log(element_id_list);
+
   if (
     element_id_list.length == 0 ||
-    element_id_list.length == 1 ||
     nodes_list.length == 0 ||
     nodes_list.length == 1
   ) {
@@ -1129,9 +1243,7 @@ function getJSON() {
       }
     }
   }
-  update_conn_label();
-  updatePreview(app.view);
-  displayJSON(app.view);
+
   var size = parseInt(nodes + volt_src_list.length + vcvs_list.length);
   var cond_matrix = Array(size)
     .fill()
@@ -1805,6 +1917,7 @@ function getJSON() {
       cond_matrix[n_k][n_k] += conductance;
     }
   }
+
   cond_matrix_inv = math.inv(cond_matrix);
   var output_matrix = math.multiply(cond_matrix_inv, curr_matrix);
   var output = document.getElementById("output");

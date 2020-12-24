@@ -88,7 +88,7 @@ var createConnection = function (sourcePort, targetPort) {
 };
 
 var circuit = [];
-document.getElementById("json").style.display = "none";
+// document.getElementById("json").style.display = "none";
 
 function displayJSON(canvas) {
   var writer = new draw2d.io.json.Writer();

@@ -122,7 +122,6 @@ function updatePreview(canvas) {
   );
 }
 
-document.getElementById("json").style.display = "none";
 
 function getJSON() {
   circuit = document.getElementById("json").innerHTML;
